@@ -27,4 +27,4 @@ for fname in os.listdir("test_images"):
     result = cv2.bitwise_and(orig, orig, mask=mask)
     out_path = f"output/{fname}"
     cv2.imwrite(out_path, cv2.cvtColor(result, cv2.COLOR_RGB2BGR))
-    print(f"✅ Output: {out_path}")
+    print(f"Output: {out_path}")
