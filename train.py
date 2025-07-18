@@ -6,7 +6,7 @@ from model import get_model
 from dataset import SegmentationDataset
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"🧠 Using device: {device}")
+print(f"Using device: {device}")
 
 transform = transforms.Compose([
     transforms.Resize((256, 256)),
@@ -50,7 +50,7 @@ for epoch in range(epochs):
 
         total_loss += loss.item()
 
-    print(f"📅 Epoch {epoch+1}/{epochs} - 🔥 Loss: {total_loss/len(loader):.4f}")
+    print(f"📅 Epoch {epoch+1}/{epochs} - Loss: {total_loss/len(loader):.4f}")
 
 torch.save(model.state_dict(), "saved_models/deeplab_bg.pt")
-print("✅ Model saved: saved_models/deeplab_bg.pt")
+print("Model saved: saved_models/deeplab_bg.pt")
