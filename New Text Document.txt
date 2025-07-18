@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# ========== CONFIG ==========
+KAGGLE_DATASET_URL="bijoyroy/human-segmentation-dataset"
+TARGET_DIR="data/human"
+UNZIP_DIR="Human_Segmentation"
+MASK_DIR="${TARGET_DIR}/masks"
+JSON_TO_MASK_SCRIPT="convert_json_to_masks.py"
+
+# ========== 1. Download ==========
+echo "📥 Downloading dataset from Kaggle..."
+mkdir -p $TARGET_DIR
+kaggle datasets download -d $KAGGLE_DATASET_URL -p $TARGET_DIR --unzip
+
+# ========== 2. Move Files ==========
+echo "📁 Organizing files..."
+mv ${TARGET_DIR}/${UNZIP_DIR}/Images ${TARGET_DIR}/Images
+mv ${TARGET_DIR}/${UNZIP_DIR}/Labels ${TARGET_DIR}/Labels
+rm -rf ${TARGET_DIR}/${UNZIP_DIR}
+
+# ========== 3. Convert JSON to Masks ==========
+echo "🧪 Generating masks from JSON annotations..."
+mkdir -p $MASK_DIR
+
+python3 $JSON_TO_MASK_SCRIPT
+
+echo "✅ Setup complete! Masks saved in ${MASK_DIR}"
