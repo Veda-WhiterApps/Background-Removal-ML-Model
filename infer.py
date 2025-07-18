@@ -18,7 +18,7 @@ while True:
     path = input("📸 Enter image path (or 'exit'): ").strip()
     if path.lower() == 'exit': break
     if not os.path.exists(path):
-        print("❌ File not found.")
+        print("File not found.")
         continue
 
     img = Image.open(path).convert("RGB")
@@ -38,4 +38,4 @@ while True:
     name = os.path.splitext(os.path.basename(path))[0]
     output_path = f"output/{name}_cleaned.png"
     cv2.imwrite(output_path, cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGRA))
-    print(f"✅ Saved: {output_path}")
+    print(f"Saved: {output_path}")
